@@ -1,0 +1,139 @@
+[
+  {
+    "id": "1",
+    "name": "Nuwan Perera",
+    "trade": "Master Electrician",
+    "category": "electrician",
+    "city": "Colombo",
+    "jobs": 312,
+    "rate": "Rs. 2,500/hr",
+    "initials": "NP",
+    "hue": "from-brand to-brand-dark",
+    "featured": true,
+    "active": true
+  },
+  {
+    "id": "2",
+    "name": "Kasun Silva",
+    "trade": "Solar Installer",
+    "category": "solar",
+    "city": "Kandy",
+    "jobs": 187,
+    "rate": "Rs. 3,000/hr",
+    "initials": "KS",
+    "hue": "from-blue-800 to-slate-950",
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "Ruwan Fernando",
+    "trade": "AC Technician",
+    "category": "ac-repair",
+    "city": "Galle",
+    "jobs": 254,
+    "rate": "Rs. 2,200/hr",
+    "initials": "RF",
+    "hue": "from-teal-700 to-teal-950",
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Dilani Jayasuriya",
+    "trade": "CCTV Specialist",
+    "category": "cctv",
+    "city": "Negombo",
+    "jobs": 140,
+    "rate": "Rs. 2,800/hr",
+    "initials": "DJ",
+    "hue": "from-indigo-700 to-indigo-950",
+    "featured": true
+  },
+  {
+    "id": "5",
+    "name": "Saman Kumara",
+    "trade": "Licensed Plumber",
+    "category": "plumber",
+    "city": "Nugegoda",
+    "jobs": 201,
+    "rate": "Rs. 2,000/hr",
+    "initials": "SK",
+    "hue": "from-brand to-brand-dark"
+  },
+  {
+    "id": "6",
+    "name": "Chamara Bandara",
+    "trade": "Industrial Electrician",
+    "category": "electrician",
+    "city": "Kandy",
+    "jobs": 98,
+    "rate": "Rs. 2,300/hr",
+    "initials": "CB",
+    "hue": "from-blue-800 to-slate-950"
+  },
+  {
+    "id": "7",
+    "name": "Tharindu Wickrama",
+    "trade": "Appliance Repair Expert",
+    "category": "appliance",
+    "city": "Colombo",
+    "jobs": 176,
+    "rate": "Rs. 1,800/hr",
+    "initials": "TW",
+    "hue": "from-teal-700 to-teal-950"
+  },
+  {
+    "id": "8",
+    "name": "Nimali Rathnayake",
+    "trade": "HVAC Technician",
+    "category": "ac-repair",
+    "city": "Nugegoda",
+    "jobs": 133,
+    "rate": "Rs. 2,400/hr",
+    "initials": "NR",
+    "hue": "from-indigo-700 to-indigo-950"
+  },
+  {
+    "id": "9",
+    "name": "Pradeep Gunasekara",
+    "trade": "Pipe & Drainage Specialist",
+    "category": "plumber",
+    "city": "Galle",
+    "jobs": 87,
+    "rate": "Rs. 1,900/hr",
+    "initials": "PG",
+    "hue": "from-brand to-brand-dark"
+  },
+  {
+    "id": "10",
+    "name": "Ishara Jayawardena",
+    "trade": "Solar & Battery Engineer",
+    "category": "solar",
+    "city": "Colombo",
+    "jobs": 221,
+    "rate": "Rs. 3,200/hr",
+    "initials": "IJ",
+    "hue": "from-blue-800 to-slate-950"
+  },
+  {
+    "id": "11",
+    "name": "Malith Senanayake",
+    "trade": "Security Systems Installer",
+    "category": "cctv",
+    "city": "Kandy",
+    "jobs": 112,
+    "rate": "Rs. 2,600/hr",
+    "initials": "MS",
+    "hue": "from-teal-700 to-teal-950"
+  },
+  {
+    "id": "12",
+    "name": "Hasini Weerasinghe",
+    "trade": "Residential Electrician",
+    "category": "electrician",
+    "city": "Negombo",
+    "jobs": 149,
+    "rate": "Rs. 2,200/hr",
+    "initials": "HW",
+    "hue": "from-indigo-700 to-indigo-950"
+  }
+]

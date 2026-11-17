@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f1f45;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+
+  /* Brand palette: blue + white + gold (from the TechLinks logo) */
+  --color-brand: #123a8f;
+  --color-brand-dark: #0a2566;
+  --color-brand-light: #1f6fe5;
+  --color-gold: #f5a800;
+  --color-gold-light: #ffc933;
+  --color-gold-dark: #c98600;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
