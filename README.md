@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechLinks
 
-## Getting Started
+**TechLinks** is a web platform by **Digital Grow Global** that connects customers in Sri Lanka with trusted local technicians: electricians, plumbers, AC engineers, solar installers, CCTV specialists and appliance repairers.
 
-First, run the development server:
+Customers search and filter technicians, then contact them by phone or WhatsApp. Site owners manage the technician directory from a password-protected admin area.
+
+## Features
+
+- **Technician directory** at `/technicians`, filterable by keyword, city, category and rating. Filtering runs on the server from URL search params, so it works without client JavaScript.
+- **Home page** with a hero, service categories, featured technicians, a how-it-works section and platform stats.
+- **Admin dashboard** at `/admin` to add, edit, hide and delete technicians. Access uses a signed, HTTP-only session cookie.
+- **Contact form** at `/contact` with server-side validation, using Server Actions.
+- **About page** and a floating WhatsApp button.
+- Responsive, light-theme UI with the brand palette defined in Tailwind CSS v4.
+
+## Tech stack
+
+| Area | Choice |
+| --- | --- |
+| Framework | [Next.js](https://nextjs.org) 16 (App Router, Turbopack) |
+| UI | React 19, Tailwind CSS 4 |
+| Language | TypeScript (strict) |
+| Linting | ESLint 9 with `eslint-config-next` |
+| Storage | JSON file (`data/technicians.json`) |
+
+`next.config.ts` enables `cacheComponents` and `partialPrefetching`. Public technician data is cached with the `technicians` tag, and admin changes expire that tag.
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 20 or later
+- npm
+
+### Install and run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the project root:
 
-## Learn More
+```bash
+# Required to enable /admin
+ADMIN_PASSWORD=choose-a-strong-password
 
-To learn more about Next.js, take a look at the following resources:
+# Optional: secret used to sign the session cookie (defaults to ADMIN_PASSWORD)
+ADMIN_SECRET=a-long-random-string
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Without `ADMIN_PASSWORD`, the admin area stays disabled.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | Run ESLint |
+| `npx tsc --noEmit` | Type-check the project |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  page.tsx             Home page
+  technicians/         Directory with server-side filtering
+  admin/               Admin dashboard and Server Actions
+  contact/             Contact page and enquiry Server Action
+  about/               About page
+components/            Shared UI (cards, navbar, footer, forms, admin forms)
+lib/
+  data.ts              Categories, types, seed technicians, stats
+  store.ts             JSON file storage and cached reads
+  auth.ts              Admin password check and signed session cookie
+  ratings.ts           Rating helpers
+data/technicians.json  Live technician list (created from seed data on first run)
+public/                Images and logo
+docs/                  Project proposal
+```
+
+## Data storage and deployment
+
+Technicians are stored in `data/technicians.json`, which the app creates from the seed data on first run. This needs a writable filesystem, so it suits a standard Node server or VPS.
+
+Serverless platforms such as Vercel have a read-only filesystem. To deploy there, replace `lib/store.ts` with a database (for example Postgres or SQLite via a hosted service) before using the admin area.
+
+## Known limitations
+
+- The contact form validates input but does not deliver it yet. Enquiries are only logged on the server (`app/contact/actions.ts`).
+- There is no automated test suite.
+- Category counts and site stats are placeholder values in `lib/data.ts`.
+
+## Roadmap
+
+- Deliver contact enquiries by email or CRM
+- Move storage to a database
+- Customer accounts, reviews and bookings
+- Technician self-registration and verification
+
+## License
+
+Proprietary. All rights reserved by Digital Grow Global.
