@@ -32,7 +32,7 @@ export default async function Home() {
           </p>
           <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1.1] tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
             <span className="lg:whitespace-nowrap"><Tr en="Find The Right Technician In" si="නිවැරදි&nbsp;තාක්ෂණික ශිල්පියා" siClass="text-[2rem] min-[400px]:text-[2.5rem] sm:text-5xl lg:text-6xl" /></span>
-            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent"><Tr en="Minutes." si="විනාඩි කිහිපයකින් සොයාගන්න." /></span>
+            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent"><Tr en="Minutes." si="විනාඩි කිහිපයකින් සොයාගන්න." siClass="text-[2rem] min-[400px]:text-[2.5rem] sm:text-5xl lg:text-6xl" /></span>
           </h1>
           <p className="mt-5 max-w-2xl text-sm font-semibold sm:text-lg text-slate-800">
             <Tr en="TechLinks connects you with verified electricians, plumbers, AC and solar specialists. Compare rated pros and book with confidence." si="TechLinks මඟින් ඔබව සත්‍යාපිත විදුලි කාර්මිකයන්, ජල නළ කාර්මිකයන්, AC සහ සූර්ය බලශක්ති විශේෂඥයන් සමඟ සම්බන්ධ කරයි. ශ්‍රේණිගත වෘත්තිකයන් සසඳා විශ්වාසයෙන් වෙන්කරන්න." />
