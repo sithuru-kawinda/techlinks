@@ -2,12 +2,16 @@
 
 import { useEffect, useId, useMemo, useState } from "react";
 import Icon from "./Icon";
+import { useLang } from "./useLang";
 
 export type Option = { label: string; tag?: string };
+
+const tagSi: Record<string, string> = { Category: "ප්‍රවර්ගය", Skill: "කුසලතාව", Technician: "ශිල්පියා" };
 
 type Props = {
   name: string;
   placeholder: string;
+  placeholderSi?: string;
   options: Option[];
   defaultValue?: string;
   icon: "search" | "pin";
@@ -15,7 +19,8 @@ type Props = {
 };
 
 // Text input with a styled suggestion list. Still a plain named input, so it submits with the surrounding GET form.
-export default function Autocomplete({ name, placeholder, options, defaultValue = "", icon, className = "" }: Props) {
+export default function Autocomplete({ name, placeholder, placeholderSi, options, defaultValue = "", icon, className = "" }: Props) {
+  const { p } = useLang();
   const [value, setValue] = useState(defaultValue);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
@@ -49,7 +54,7 @@ export default function Autocomplete({ name, placeholder, options, defaultValue 
         <input
           name={name}
           value={value}
-          placeholder={placeholder}
+          placeholder={p(placeholder, placeholderSi)}
           autoComplete="off"
           role="combobox"
           aria-expanded={show}
@@ -102,7 +107,7 @@ export default function Autocomplete({ name, placeholder, options, defaultValue 
                 <Icon name={icon} className="h-4 w-4 text-slate-400" />
                 {o.label}
               </span>
-              {o.tag && <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500">{o.tag}</span>}
+              {o.tag && <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500">{p(o.tag, tagSi[o.tag])}</span>}
             </li>
           ))}
         </ul>

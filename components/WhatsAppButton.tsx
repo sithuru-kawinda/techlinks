@@ -1,19 +1,23 @@
+"use client";
+
 import { contactPhone } from "@/lib/data";
+import { useLang } from "./useLang";
 
 const href = `https://wa.me/${contactPhone.href.replace("tel:+", "")}?text=${encodeURIComponent("Hi TechLinks, I need help finding a technician.")}`;
 
 // Floating chat button, fixed to the bottom-right corner on every page.
 export default function WhatsAppButton() {
+  const { p } = useLang();
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
+      aria-label={p("Chat with us on WhatsApp", "WhatsApp හරහා අප හා කතා කරන්න")}
       className="group fixed bottom-5 right-4 z-40 flex items-center sm:bottom-6 sm:right-6"
     >
       <span className="pointer-events-none mr-3 hidden whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-800 opacity-0 shadow-lg transition group-hover:opacity-100 group-focus-visible:opacity-100 md:block">
-        Chat on WhatsApp
+        {p("Chat on WhatsApp", "WhatsApp හරහා කතා කරන්න")}
       </span>
       <span className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/25 transition group-hover:scale-110 group-hover:bg-[#1ebe5b]">
         <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/50 motion-reduce:hidden" />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/Icon";
 import { contactPhone } from "@/lib/data";
+import Tr from "@/components/Tr";
 
 export const metadata: Metadata = {
   title: "Contact Us | TechLinks",
@@ -13,15 +14,15 @@ export const metadata: Metadata = {
 const whatsapp = `https://wa.me/${contactPhone.href.replace("tel:+", "")}`;
 
 const channels = [
-  { icon: "phone", title: "Call us", body: "Speak to our team directly.", label: contactPhone.display, href: contactPhone.href },
-  { icon: "phone", title: "WhatsApp", body: "Message us any time and we will reply.", label: "Chat on WhatsApp", href: whatsapp },
-  { icon: "user", title: "Join as a technician", body: "List your services and get hired.", label: "Send an enquiry", href: "#enquiry" },
+  { icon: "phone", title: "Call us", titleSi: "අපට අමතන්න", body: "Speak to our team directly.", bodySi: "අපගේ කණ්ඩායම සමඟ කෙලින්ම කතා කරන්න.", label: contactPhone.display, labelSi: contactPhone.display, href: contactPhone.href },
+  { icon: "phone", title: "WhatsApp", titleSi: "WhatsApp", body: "Message us any time and we will reply.", bodySi: "ඕනෑම වේලාවක පණිවිඩයක් එවන්න, අපි පිළිතුරු දෙන්නෙමු.", label: "Chat on WhatsApp", labelSi: "WhatsApp හරහා කතා කරන්න", href: whatsapp },
+  { icon: "user", title: "Join as a technician", titleSi: "ශිල්පියෙකු ලෙස සම්බන්ධ වන්න", body: "List your services and get hired.", bodySi: "ඔබේ සේවා ලැයිස්තුගත කර රැකියා ලබාගන්න.", label: "Send an enquiry", labelSi: "විමසුමක් යවන්න", href: "#enquiry" },
 ] as const;
 
 const faqs = [
-  { q: "How do I hire a technician?", a: "Browse or search the technician directory, pick someone who fits, then call or WhatsApp them to agree on a time." },
-  { q: "How do I list my services?", a: "Choose “Join as a technician” in the form and tell us your trade and city. We will follow up with the next steps." },
-  { q: "Are technicians verified?", a: "TechLinks focuses on verified professionals so you can hire with confidence." },
+  { q: "How do I hire a technician?", a: "Browse or search the technician directory, pick someone who fits, then call or WhatsApp them to agree on a time.", qSi: "මම ශිල්පියෙකු කුලියට ගන්නේ කෙසේද?", aSi: "ශිල්පී නාමාවලිය බලා හෝ සොයා, ඔබට ගැලපෙන කෙනෙකු තෝරා, වේලාවක් එකඟ වීමට ඔවුන්ට අමතන්න හෝ WhatsApp කරන්න." },
+  { q: "How do I list my services?", a: "Choose “Join as a technician” in the form and tell us your trade and city. We will follow up with the next steps.", qSi: "මගේ සේවා ලැයිස්තුගත කරන්නේ කෙසේද?", aSi: "පෝරමයේ “ශිල්පියෙකු ලෙස සම්බන්ධ වන්න” තෝරා ඔබේ වෘත්තිය සහ නගරය අපට කියන්න. අපි ඉදිරි පියවර සමඟ ඔබව සම්බන්ධ කරගන්නෙමු." },
+  { q: "Are technicians verified?", a: "TechLinks focuses on verified professionals so you can hire with confidence.", qSi: "ශිල්පීන් සත්‍යාපිතද?", aSi: "ඔබට විශ්වාසයෙන් කුලියට ගත හැකි වන පරිදි TechLinks සත්‍යාපිත වෘත්තිකයන් කෙරෙහි අවධානය යොමු කරයි." },
 ];
 
 export default function ContactPage() {
@@ -36,12 +37,12 @@ export default function ContactPage() {
         </div>
         <div className="mx-auto max-w-7xl px-5 py-14 text-center sm:px-8 sm:py-20">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-light ring-1 ring-white/15">
-            <span className="h-2 w-2 rounded-full bg-gold" /> Contact
+            <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="Contact" si="සම්බන්ධ වන්න" />
           </span>
           <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Let&apos;s <span className="text-gold">Talk</span>
+            <Tr en="Let’s" si="අපි" /> <span className="text-gold"><Tr en="Talk" si="කතා කරමු" /></span>
           </h1>
-          <p className="mx-auto mt-3 max-w-xl font-medium text-white">Questions, partnerships or want to list your services? Reach out and we will get back to you.</p>
+          <p className="mx-auto mt-3 max-w-xl font-medium text-white"><Tr en="Questions, partnerships or want to list your services? Reach out and we will get back to you." si="ප්‍රශ්න, හවුල්කාරිත්ව හෝ ඔබේ සේවා ලැයිස්තුගත කිරීමට අවශ්‍යද? අප හා සම්බන්ධ වන්න, අපි ඔබව සම්බන්ධ කරගන්නෙමු." /></p>
         </div>
       </section>
 
@@ -54,17 +55,17 @@ export default function ContactPage() {
                   <Icon name={c.icon} className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-extrabold text-brand-dark">{c.title}</span>
-                  <span className="block text-sm text-slate-600">{c.body}</span>
-                  <span className="mt-1.5 block text-sm font-bold text-brand-light">{c.label} <span aria-hidden="true">→</span></span>
+                  <span className="block font-extrabold text-brand-dark"><Tr en={c.title} si={c.titleSi} /></span>
+                  <span className="block text-sm text-slate-600"><Tr en={c.body} si={c.bodySi} /></span>
+                  <span className="mt-1.5 block text-sm font-bold text-brand-light"><Tr en={c.label} si={c.labelSi} /> <span aria-hidden="true">→</span></span>
                 </span>
               </a>
             ))}
           </div>
 
           <div id="enquiry" className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-brand/5 sm:p-10">
-            <h2 className="text-2xl font-extrabold text-brand-dark">Send us a message</h2>
-            <p className="mb-8 mt-1 text-sm text-slate-600">Fill in the form and we will reply as soon as we can.</p>
+            <h2 className="text-2xl font-extrabold text-brand-dark"><Tr en="Send us a message" si="අපට පණිවිඩයක් එවන්න" /></h2>
+            <p className="mb-8 mt-1 text-sm text-slate-600"><Tr en="Fill in the form and we will reply as soon as we can." si="පෝරමය පුරවන්න, අපට හැකි ඉක්මනින් පිළිතුරු දෙන්නෙමු." /></p>
             <ContactForm />
           </div>
         </div>
@@ -72,20 +73,20 @@ export default function ContactPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 lg:py-20">
-          <h2 className="text-center text-4xl font-extrabold text-brand-dark sm:text-5xl">Common Questions</h2>
+          <h2 className="text-center text-4xl font-extrabold text-brand-dark sm:text-5xl"><Tr en="Common Questions" si="නිතර අසන ප්‍රශ්න" /></h2>
           <div className="mt-8 space-y-3">
             {faqs.map((f) => (
               <details key={f.q} className="group rounded-2xl border border-slate-200 bg-white px-5 py-4 open:border-gold open:shadow-md">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-brand-dark">
-                  {f.q}
+                  <Tr en={f.q} si={f.qSi} />
                   <span aria-hidden="true" className="text-xl text-gold transition group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{f.a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600"><Tr en={f.a} si={f.aSi} /></p>
               </details>
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-slate-600">
-            Looking for a pro right now? <Link href="/technicians" className="font-bold text-brand-light hover:underline">Find a technician →</Link>
+            <Tr en="Looking for a pro right now?" si="දැන්ම වෘත්තිකයෙකු සොයනවාද?" /> <Link href="/technicians" className="font-bold text-brand-light hover:underline"><Tr en="Find a technician" si="ශිල්පියෙකු සොයන්න" /> →</Link>
           </p>
         </div>
       </section>

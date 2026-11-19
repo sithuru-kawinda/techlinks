@@ -4,6 +4,8 @@ import Icon from "@/components/Icon";
 import TechnicianCard from "@/components/TechnicianCard";
 import { categories, stats, steps } from "@/lib/data";
 import { getTechnicians } from "@/lib/store";
+import Tr from "@/components/Tr";
+import TInput from "@/components/TInput";
 
 const stepIcons = ["search", "star", "phone", "check"] as const;
 
@@ -26,33 +28,33 @@ export default async function Home() {
 
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-start px-5 pb-10 pt-8 text-center sm:px-8 sm:pt-10">
           <p className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-md min-[400px]:text-xs min-[400px]:tracking-[0.2em]">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-gold-light" /> <span className="hidden min-[400px]:inline">TechLinks · </span>Verified Technicians
+            <span className="h-2 w-2 shrink-0 rounded-full bg-gold-light" /> <span className="hidden min-[400px]:inline">TechLinks · </span><Tr en="Verified Technicians" si="සත්‍යාපිත ශිල්පීන්" />
           </p>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
-            <span className="lg:whitespace-nowrap">Find The Right Technician In</span>
-            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">Minutes.</span>
+          <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1.1] tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
+            <span className="lg:whitespace-nowrap"><Tr en="Find The Right Technician In" si="නිවැරදි තාක්ෂණික ශිල්පියා" /></span>
+            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent"><Tr en="Minutes." si="විනාඩි කිහිපයකින් සොයාගන්න." /></span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg font-semibold text-slate-800">
-            TechLinks connects you with verified electricians, plumbers, AC and solar specialists. Compare rated pros and book with confidence.
+          <p className="mt-5 max-w-2xl text-sm font-semibold sm:text-lg text-slate-800">
+            <Tr en="TechLinks connects you with verified electricians, plumbers, AC and solar specialists. Compare rated pros and book with confidence." si="TechLinks මඟින් ඔබව සත්‍යාපිත විදුලි කාර්මිකයන්, ජල නළ කාර්මිකයන්, AC සහ සූර්ය බලශක්ති විශේෂඥයන් සමඟ සම්බන්ධ කරයි. ශ්‍රේණිගත වෘත්තිකයන් සසඳා විශ්වාසයෙන් වෙන්කරන්න." />
           </p>
 
           <form action="/technicians" className="mt-8 flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-white/70 bg-white p-2 text-left shadow-2xl shadow-blue-900/20 sm:flex-row sm:items-center">
             <label className="flex flex-1 items-center gap-2 px-3">
               <Icon name="search" className="h-5 w-5 text-brand" />
-              <input name="q" placeholder="What do you need fixed?" className="w-full bg-transparent py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none" />
+              <TInput name="q" placeholder="What do you need fixed?" si="ඔබට හදාගන්න අවශ්‍ය මොනවාද?" className="w-full bg-transparent py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none" />
             </label>
             <label className="flex items-center gap-2 border-slate-200 px-3 sm:border-l">
               <Icon name="pin" className="h-5 w-5 text-brand" />
-              <input name="city" placeholder="City" className="w-full bg-transparent py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none sm:w-28" />
+              <TInput name="city" placeholder="City" si="නගරය" className="w-full bg-transparent py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none sm:w-28" />
             </label>
-            <button className="rounded-xl bg-gold px-7 py-3 font-bold text-brand-dark transition hover:bg-gold-light">Search</button>
+            <button className="rounded-xl bg-gold px-7 py-3 font-bold text-brand-dark transition hover:bg-gold-light"><Tr en="Search" si="සොයන්න" /></button>
           </form>
 
           <dl className="mt-10 grid w-full max-w-xl grid-cols-3 divide-x divide-slate-300/70 rounded-2xl border border-white bg-white/90 py-4 shadow-xl backdrop-blur">
             {stats.map((s) => (
               <div key={s.label} className="px-2">
                 <dt className="text-xl font-extrabold text-brand sm:text-3xl">{s.value}</dt>
-                <dd className="text-xs font-semibold text-slate-700 sm:text-sm">{s.label}</dd>
+                <dd className="text-xs font-semibold text-slate-700 sm:text-sm"><Tr en={s.label} si={s.labelSi} /></dd>
               </div>
             ))}
           </dl>
@@ -66,10 +68,10 @@ export default async function Home() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-brand">
-              <span className="h-2 w-2 rounded-full bg-gold" /> Categories
+              <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="Categories" si="ප්‍රවර්ග" />
             </span>
             <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-brand-dark sm:text-5xl">
-              Browse By <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">Trade</span>
+              <Tr en="Browse By" si="වෘත්තිය අනුව" /> <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent"><Tr en="Trade" si="බලන්න" /></span>
             </h2>
             <div className="mx-auto mt-4 flex items-center justify-center gap-2" aria-hidden="true">
               <span className="h-1 w-12 rounded-full bg-gold" />
@@ -77,7 +79,7 @@ export default async function Home() {
               <span className="h-1 w-1.5 rounded-full bg-gold/30" />
             </div>
             <p className="mt-5 text-lg text-slate-600">
-              Pick a service and see verified, rated professionals ready to help.
+              <Tr en="Pick a service and see verified, rated professionals ready to help." si="සේවාවක් තෝරා උදව් කිරීමට සූදානම් සත්‍යාපිත, ශ්‍රේණිගත වෘත්තිකයන් බලන්න." />
             </p>
           </div>
 
@@ -93,10 +95,10 @@ export default async function Home() {
                   <Icon name={c.icon} className="h-7 w-7" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-bold text-brand-dark">{c.name}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{c.blurb}</p>
+                  <h3 className="text-lg font-bold text-brand-dark"><Tr en={c.name} si={c.nameSi} /></h3>
+                  <p className="mt-1 text-sm text-slate-600"><Tr en={c.blurb} si={c.blurbSi} /></p>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-brand">{c.count} pros</span>
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-brand">{c.count} <Tr en="pros" si="ශිල්පීන්" /></span>
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-slate-100 text-brand transition duration-300 group-hover:translate-x-1 group-hover:bg-brand group-hover:text-white" aria-hidden="true">→</span>
                   </div>
                 </div>
@@ -106,7 +108,7 @@ export default async function Home() {
 
           <div className="mt-10 text-center">
             <Link href="/technicians" className="inline-flex items-center gap-2 rounded-full border-2 border-brand px-7 py-3 text-sm font-bold text-brand transition hover:bg-brand hover:text-white">
-              View all technicians <span aria-hidden="true">→</span>
+              <Tr en="View all technicians" si="සියලුම ශිල්පීන් බලන්න" /> <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -127,10 +129,10 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-brand">
-              <span className="h-2 w-2 rounded-full bg-gold" /> Featured
+              <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="Featured" si="විශේෂිත" />
             </span>
             <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-brand-dark sm:text-5xl">
-              Top-Rated <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">Technicians</span>
+              <Tr en="Top-Rated" si="ඉහළම ශ්‍රේණිගත" /> <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent"><Tr en="Technicians" si="ශිල්පීන්" /></span>
             </h2>
             <div className="mx-auto mt-4 flex items-center justify-center gap-2" aria-hidden="true">
               <span className="h-1 w-12 rounded-full bg-gold" />
@@ -138,7 +140,7 @@ export default async function Home() {
               <span className="h-1 w-1.5 rounded-full bg-gold/30" />
             </div>
             <p className="mt-5 text-lg text-slate-600">
-              Hand-picked professionals with outstanding reviews and a proven track record.
+              <Tr en="Hand-picked professionals with outstanding reviews and a proven track record." si="විශිෂ්ට සමාලෝචන සහ ඔප්පු වූ කාර්ය සාධනයක් සහිත, ප්‍රවේශමෙන් තෝරාගත් වෘත්තිකයන්." />
             </p>
           </div>
 
@@ -150,7 +152,7 @@ export default async function Home() {
 
           <div className="mt-10 text-center">
             <Link href="/technicians" className="inline-flex items-center gap-2 rounded-full border-2 border-brand px-7 py-3 text-sm font-bold text-brand transition hover:bg-brand hover:text-white">
-              View all technicians <span aria-hidden="true">→</span>
+              <Tr en="View all technicians" si="සියලුම ශිල්පීන් බලන්න" /> <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -163,17 +165,17 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-light ring-1 ring-white/15">
-              <span className="h-2 w-2 rounded-full bg-gold" /> How it works
+              <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="How it works" si="ක්‍රියා කරන ආකාරය" />
             </span>
             <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-              Hire a Pro in <span className="text-gold">Four Easy Steps</span>
+              <Tr en="Hire a Pro in" si="වෘත්තිකයෙකු කුලියට ගන්න" /> <span className="text-gold"><Tr en="Four Easy Steps" si="පහසු පියවර හතරකින්" /></span>
             </h2>
             <div className="mx-auto mt-4 flex items-center justify-center gap-2" aria-hidden="true">
               <span className="h-1 w-12 rounded-full bg-gold" />
               <span className="h-1 w-3 rounded-full bg-gold/50" />
               <span className="h-1 w-1.5 rounded-full bg-gold/30" />
             </div>
-            <p className="mt-5 text-lg text-blue-100/80">From first search to finished job, it takes minutes to get started.</p>
+            <p className="mt-5 text-lg text-blue-100/80"><Tr en="From first search to finished job, it takes minutes to get started." si="පළමු සෙවීමේ සිට වැඩය අවසන් වන තුරු, ආරම්භ කිරීමට ගතවන්නේ විනාඩි කිහිපයකි." /></p>
           </div>
 
           <ol className="relative mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -187,8 +189,8 @@ export default async function Home() {
                 <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white/10 text-gold-light ring-1 ring-white/15">
                   <Icon name={stepIcons[i]} className="h-7 w-7" />
                 </span>
-                <h3 className="mt-5 text-xl font-bold text-white">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-blue-100/80">{s.body}</p>
+                <h3 className="mt-5 text-xl font-bold text-white"><Tr en={s.title} si={s.titleSi} /></h3>
+                <p className="mt-2 text-sm leading-relaxed text-blue-100/80"><Tr en={s.body} si={s.bodySi} /></p>
               </li>
             ))}
           </ol>
@@ -206,31 +208,35 @@ export default async function Home() {
           <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-light ring-1 ring-white/15">
-                <span className="h-2 w-2 rounded-full bg-gold" /> For technicians
+                <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="For technicians" si="ශිල්පීන් සඳහා" />
               </span>
               <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-                Are You a <span className="text-gold">Skilled Technician?</span>
+                <Tr en="Are You a" si="ඔබ" /> <span className="text-gold"><Tr en="Skilled Technician?" si="දක්ෂ ශිල්පියෙක්ද?" /></span>
               </h2>
               <p className="mt-4 max-w-xl text-lg text-blue-100/90">
-                Join TechLinks and get discovered by customers looking for your skills.
+                <Tr en="Join TechLinks and get discovered by customers looking for your skills." si="TechLinks හා එක්වී ඔබේ කුසලතා සොයන පාරිභෝගිකයන්ට හමුවන්න." />
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3.5 font-bold text-brand-dark shadow-lg shadow-gold/30 transition hover:bg-gold-light">
-                  Join as a Technician <span aria-hidden="true">→</span>
+                  <Tr en="Join as a Technician" si="ශිල්පියෙකු ලෙස සම්බන්ධ වන්න" /> <span aria-hidden="true">→</span>
                 </Link>
                 <Link href="/contact" className="inline-flex items-center justify-center rounded-full border-2 border-white/30 px-8 py-3.5 font-semibold text-white transition hover:border-white hover:bg-white/10">
-                  Talk to Us
+                  <Tr en="Talk to Us" si="අප සමඟ කතා කරන්න" />
                 </Link>
               </div>
             </div>
 
             <ul className="space-y-4">
-              {["Create your professional profile", "Get found by customers in your area", "Build your reputation with real reviews"].map((t) => (
-                <li key={t} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
+              {[
+                ["Create your professional profile", "ඔබේ වෘත්තීය පැතිකඩ සාදන්න"],
+                ["Get found by customers in your area", "ඔබේ ප්‍රදේශයේ පාරිභෝගිකයන්ට හමුවන්න"],
+                ["Build your reputation with real reviews", "සැබෑ සමාලෝචන මඟින් ඔබේ කීර්තිය ගොඩනගන්න"],
+              ].map(([en, si]) => (
+                <li key={en} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold text-brand-dark">
                     <Icon name="check" className="h-5 w-5" />
                   </span>
-                  <span className="font-semibold text-white">{t}</span>
+                  <span className="font-semibold text-white"><Tr en={en} si={si} /></span>
                 </li>
               ))}
             </ul>

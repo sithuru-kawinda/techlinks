@@ -7,6 +7,7 @@ import Autocomplete, { type Option } from "@/components/Autocomplete";
 import TechnicianCard from "@/components/TechnicianCard";
 import { categories } from "@/lib/data";
 import { getTechnicians } from "@/lib/store";
+import Tr from "@/components/Tr";
 
 export const metadata: Metadata = {
   title: "Technicians | TechLinks",
@@ -70,17 +71,17 @@ async function Listing({ searchParams }: { searchParams: SearchParams }) {
         </div>
         <div className="mx-auto max-w-7xl px-5 py-12 text-center sm:px-8 sm:py-16">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-light ring-1 ring-white/15">
-            <span className="h-2 w-2 rounded-full bg-gold" /> Technicians
+            <span className="h-2 w-2 rounded-full bg-gold" /> <Tr en="Technicians" si="ශිල්පීන්" />
           </span>
           <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Find a <span className="text-gold">Technician</span>
+            <Tr en="Find a" si="ශිල්පියෙකු" /> <span className="text-gold"><Tr en="Technician" si="සොයන්න" /></span>
           </h1>
-          <p className="mx-auto mt-3 max-w-xl font-medium text-white">Search by Categories or name, then narrow it down by trade and city.</p>
+          <p className="mx-auto mt-3 max-w-xl font-medium text-white"><Tr en="Search by Categories or name, then narrow it down by trade and city." si="ප්‍රවර්ග හෝ නම අනුව සොයා, පසුව වෘත්තිය සහ නගරය අනුව පටු කරන්න." /></p>
 
           <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-2 rounded-2xl bg-white p-2 text-left shadow-2xl shadow-black/20 sm:flex-row sm:items-center">
-            <Autocomplete key={`q-${q}`} name="q" defaultValue={q} placeholder="Search by Categories or name" options={skillOptions} icon="search" className="flex-1" />
-            <Autocomplete key={`city-${city}`} name="city" defaultValue={city} placeholder="City" options={cityOptions} icon="pin" className="border-slate-200 sm:w-52 sm:border-l" />
-            <button className="rounded-xl bg-gold px-7 py-3 font-bold text-brand-dark transition hover:bg-gold-light">Search</button>
+            <Autocomplete key={`q-${q}`} name="q" defaultValue={q} placeholder="Search by Categories or name" placeholderSi="ප්‍රවර්ග හෝ නම අනුව සොයන්න" options={skillOptions} icon="search" className="flex-1" />
+            <Autocomplete key={`city-${city}`} name="city" defaultValue={city} placeholder="City" placeholderSi="නගරය" options={cityOptions} icon="pin" className="border-slate-200 sm:w-52 sm:border-l" />
+            <button className="rounded-xl bg-gold px-7 py-3 font-bold text-brand-dark transition hover:bg-gold-light"><Tr en="Search" si="සොයන්න" /></button>
           </div>
         </div>
       </section>
@@ -90,13 +91,13 @@ async function Listing({ searchParams }: { searchParams: SearchParams }) {
           {/* Left: category ticks */}
           <aside key={JSON.stringify(sp)} className="h-fit rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
             <AutoSubmit action="/technicians">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-brand">Categories</h2>
+            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-brand"><Tr en="Categories" si="ප්‍රවර්ග" /></h2>
             <ul className="mt-4 space-y-1">
               {categories.map((c) => (
                 <li key={c.slug}>
                   <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 transition hover:bg-blue-50">
                     <input type="checkbox" name="category" value={c.slug} defaultChecked={selected.includes(c.slug)} className="h-4 w-4 rounded accent-brand" />
-                    <span className="text-sm font-medium text-slate-700">{c.name}</span>
+                    <span className="text-sm font-medium text-slate-700"><Tr en={c.name} si={c.nameSi} /></span>
                   </label>
                 </li>
               ))}
@@ -104,7 +105,7 @@ async function Listing({ searchParams }: { searchParams: SearchParams }) {
             </AutoSubmit>
             {filtered && (
               <Link href="/technicians" className="mt-5 block text-center text-sm font-semibold text-slate-500 hover:text-brand">
-                Clear all filters
+                <Tr en="Clear all filters" si="සියලු පෙරහන් ඉවත් කරන්න" />
               </Link>
             )}
           </aside>
@@ -112,9 +113,9 @@ async function Listing({ searchParams }: { searchParams: SearchParams }) {
           {/* Middle: technicians */}
           <section aria-live="polite">
             <div className="flex flex-wrap items-end justify-between gap-2">
-              <h2 className="text-2xl font-extrabold text-brand-dark">All Technicians</h2>
+              <h2 className="text-2xl font-extrabold text-brand-dark"><Tr en="All Technicians" si="සියලුම ශිල්පීන්" /></h2>
               <p className="text-sm font-medium text-slate-600">
-                Showing {results.length} of {technicians.length} technicians
+                <Tr en={`Showing ${results.length} of ${technicians.length} technicians`} si={`ශිල්පීන් ${technicians.length}න් ${results.length}ක් පෙන්වමින්`} />
               </p>
             </div>
 
@@ -126,10 +127,10 @@ async function Listing({ searchParams }: { searchParams: SearchParams }) {
               </div>
             ) : (
               <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
-                <p className="text-lg font-bold text-brand-dark">No technicians match your search</p>
-                <p className="mt-2 text-slate-600">Try removing a filter or searching a different category or city.</p>
+                <p className="text-lg font-bold text-brand-dark"><Tr en="No technicians match your search" si="ඔබේ සෙවීමට ගැලපෙන ශිල්පීන් නැත" /></p>
+                <p className="mt-2 text-slate-600"><Tr en="Try removing a filter or searching a different category or city." si="පෙරහනක් ඉවත් කිරීමට හෝ වෙනත් ප්‍රවර්ගයක් හෝ නගරයක් සෙවීමට උත්සාහ කරන්න." /></p>
                 <Link href="/technicians" className="mt-5 inline-block rounded-full bg-brand px-6 py-2.5 text-sm font-bold text-white hover:bg-brand-dark">
-                  Clear all filters
+                  <Tr en="Clear all filters" si="සියලු පෙරහන් ඉවත් කරන්න" />
                 </Link>
               </div>
             )}
