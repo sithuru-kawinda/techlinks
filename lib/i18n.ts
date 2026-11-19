@@ -45,6 +45,7 @@ export const si: Record<Key, string> = {
 export const dictionaries: Record<Lang, Record<Key, string>> = { en, si };
 
 export const tradeSi: Record<string, string> = {
+  Electrician: "විදුලි කාර්මික",
   "Master Electrician": "ප්‍රධාන විදුලි කාර්මික",
   "Solar Installer": "සූර්ය බලශක්ති ස්ථාපක",
   "AC Technician": "AC කාර්මික",
@@ -67,7 +68,7 @@ export const citySi: Record<string, string> = {
   Nugegoda: "නුගේගොඩ",
 };
 
-export const rateSi = (rate: string) => rate.replace("Rs.", "රු.").replace("/hr", "/පැයට");
+export const rateSi = (rate: string) => rate.replace("Contact for rate", "ගාස්තුව සඳහා අමතන්න").replace("Rs.", "රු.").replace("/hr", "/පැයට");
 
 /** Server-side validation messages from app/contact/actions.ts. */
 export const errorSi: Record<string, string> = {
