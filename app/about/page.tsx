@@ -92,7 +92,7 @@ export default function AboutPage() {
                 <Icon name="star" className="h-7 w-7" />
               </span>
               <h3 className="mt-6 text-3xl font-extrabold text-brand-dark sm:text-4xl"><Tr en="Our Vision" si="අපේ දැක්ම" /></h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg"><Tr en="A place where every skilled technician is found, trusted and fairly rewarded for their work." si="සෑම දක්ෂ ශිල්පියෙකුම සොයාගන්නා, විශ්වාස කරන සහ ඔවුන්ගේ වැඩට සාධාරණ ප්‍රතිලාභ ලබන ස්ථානයක්." /></p>
+              <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg"><Tr en="A place where every skilled, qualified technician is found, trusted and fairly rewarded for their work." si="සෑම දක්ෂ, සුදුසුකම් ලත් ශිල්පියෙකුම සොයාගන්නා, විශ්වාස කරන සහ ඔවුන්ගේ වැඩට සාධාරණ ප්‍රතිලාභ ලබන ස්ථානයක්." /></p>
             </div>
           </div>
         </div>
