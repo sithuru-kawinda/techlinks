@@ -31,7 +31,7 @@ export default async function Home() {
             <span className="h-2 w-2 shrink-0 rounded-full bg-gold-light" /> <span className="hidden min-[400px]:inline">TechLinks · </span><Tr en="Verified Technicians" si="සත්‍යාපිත ශිල්පීන්" />
           </p>
           <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1.1] tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
-            <span className="lg:whitespace-nowrap"><Tr en="Find The Right Technician In" si="නිවැරදි&nbsp;තාක්ෂණික ශිල්පියා" siClass="text-[2rem] min-[400px]:text-[2.5rem] sm:text-5xl lg:text-6xl" /></span>
+            <span className="lg:whitespace-nowrap"><Tr en="Find The Right Technician In" si="නිවැරදි&nbsp;තාක්ෂණික ශිල්පියෙකු" siClass="text-[2rem] min-[400px]:text-[2.5rem] sm:text-5xl lg:text-6xl" /></span>
             <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent"><Tr en="Minutes." si="විනාඩි කිහිපයකින් සොයාගන්න." siClass="text-[2rem] min-[400px]:text-[2.5rem] sm:text-5xl lg:text-6xl" /></span>
           </h1>
           <p className="mt-5 max-w-2xl text-sm font-semibold sm:text-lg text-slate-800">
