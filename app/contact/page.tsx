@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/Icon";
-import { contactPhone } from "@/lib/data";
+import { contactEmail, contactPhone } from "@/lib/data";
 import Tr from "@/components/Tr";
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ const whatsapp = `https://wa.me/${contactPhone.href.replace("tel:+", "")}`;
 const channels = [
   { icon: "phone", title: "Call us", titleSi: "අපට අමතන්න", body: "Speak to our team directly.", bodySi: "අපගේ කණ්ඩායම සමඟ කෙලින්ම කතා කරන්න.", label: contactPhone.display, labelSi: contactPhone.display, href: contactPhone.href },
   { icon: "phone", title: "WhatsApp", titleSi: "WhatsApp", body: "Message us any time and we will reply.", bodySi: "ඕනෑම වේලාවක පණිවිඩයක් එවන්න, අපි පිළිතුරු දෙන්නෙමු.", label: "Chat on WhatsApp", labelSi: "WhatsApp හරහා කතා කරන්න", href: whatsapp },
+  { icon: "mail", title: "Email us", titleSi: "අපට ඊමේල් කරන්න", body: "Write to us and we will reply by email.", bodySi: "අපට ලියන්න, අපි ඊමේල් මගින් පිළිතුරු දෙන්නෙමු.", label: contactEmail.display, labelSi: contactEmail.display, href: contactEmail.href },
   { icon: "user", title: "Join as a technician", titleSi: "ශිල්පියෙකු ලෙස සම්බන්ධ වන්න", body: "List your services and get hired.", bodySi: "ඔබේ සේවා ලැයිස්තුගත කර රැකියා ලබාගන්න.", label: "Send an enquiry", labelSi: "විමසුමක් යවන්න", href: "#enquiry" },
 ] as const;
 

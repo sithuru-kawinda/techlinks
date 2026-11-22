@@ -78,6 +78,7 @@ export const errorSi: Record<string, string> = {
   "Choose a topic.": "මාතෘකාවක් තෝරන්න.",
   "Tell us a little more (at least 10 characters).": "කරුණාකර තව ටිකක් විස්තර කරන්න (අවම අක්ෂර 10ක්).",
   "Please keep your message under 2000 characters.": "කරුණාකර ඔබේ පණිවිඩය අක්ෂර 2000ට අඩුවෙන් තබන්න.",
+  "Sorry, we could not send your message. Please try again later.": "සමාවන්න, ඔබේ පණිවිඩය යැවීමට නොහැකි විය. කරුණාකර පසුව නැවත උත්සාහ කරන්න.",
 };
 
 export const topicSi: Record<string, string> = {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categories, contactPhone } from "@/lib/data";
+import { categories, contactEmail, contactPhone } from "@/lib/data";
 import Icon from "./Icon";
 import Logo from "./Logo";
 import T from "./T";
@@ -65,6 +65,9 @@ export default function Footer() {
           </p>
           <a href={contactPhone.href} className="mt-5 flex items-center gap-2 text-sm font-semibold text-white transition hover:text-gold-light">
             <Icon name="phone" className="h-4 w-4" /> {contactPhone.display}
+          </a>
+          <a href={contactEmail.href} className="mt-2 flex items-center gap-2 text-sm font-semibold text-white transition hover:text-gold-light">
+            <Icon name="mail" className="h-4 w-4" /> {contactEmail.display}
           </a>
           <Link href="/contact" className="mt-5 inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-5 py-2 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10">
             <T k="footer.contactUs" /> <span aria-hidden="true">→</span>

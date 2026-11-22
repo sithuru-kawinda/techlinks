@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Status
 
-Early-stage `create-next-app` project (package name `techlinks`, a "Digital Grow Global" platform for finding technicians; part of the "ElectricianLink web" folder). Two routes exist, `/` and `/technicians`, both driven by placeholder data. There is no test setup and no backend.
+Early-stage Next.js project (package name `techlinks`, a "Digital Grow Global" platform connecting Sri Lankan customers with technicians; part of the "ElectricianLink web" folder). Routes: `/`, `/technicians`, `/about`, `/contact`, `/admin`. There is no test setup and no database; technicians live in a JSON file.
 
 ## Commands
 
@@ -30,6 +30,10 @@ No test runner is configured.
 - `app/layout.tsx` uses the globally generated `LayoutProps<"/">` type, not an imported one. It loads Inter through `next/font/google` (CSS variable `--font-inter`, mapped to `--font-sans`).
 - Path alias `@/*` maps to the project root (`./*`), not `src/`.
 - TypeScript is `strict`.
-- Placeholder content (categories, technicians, steps, stats) lives in `lib/data.ts`; there is no backend yet. `components/TechnicianCard.tsx` is shared by the home page and `/technicians`.
+- `lib/data.ts` holds categories, the `Technician` type, seed technicians, steps and stats. `components/TechnicianCard.tsx` is shared by the home page and `/technicians`.
+- **Storage:** `lib/store.ts` (`server-only`) reads and writes `data/technicians.json` (seeded from `seedTechnicians` if missing; writes are tmp-file + rename). `getTechnicians()` is a `"use cache"` read tagged `technicians` that hides `active === false` entries; `getAllTechnicians()` is uncached for the admin. Every admin mutation must call `updateTag(TECHNICIANS_TAG)`. This needs a writable filesystem, so it will not work as-is on serverless hosts like Vercel.
+- **Admin:** `/admin` is gated by `lib/auth.ts`, a signed HMAC, HTTP-only cookie session. It needs `ADMIN_PASSWORD` in `.env.local` (optional `ADMIN_SECRET` signs the cookie); without it the admin stays disabled. Server Actions in `app/admin/actions.ts` must each call `requireAdmin()`, because hiding the UI is not enough. `app/contact/actions.ts` is the contact-form Server Action with server-side validation.
+- **i18n (English/Sinhala):** `lib/i18n.ts` has the `en` dictionary (its keys define `Key`), the `si` dictionary (typed `Record<Key, string>`, so every new English key needs a Sinhala one), and Sinhala maps for cities, categories, topics and contact-form error strings. The language is client-only state in `localStorage` (`components/useLang.ts`, `useSyncExternalStore`), so server components render text through the client helpers `<T k="..." />`, `<Tr en si />` and `<TInput si />`. Server-side error strings returned to the contact form are translated by looking them up in `errorSi`, so changing those messages means updating that map.
+- **Ratings:** `lib/ratings.ts` is a client-only hook that stores ratings in `localStorage` (start at 0, visible only on the device that gave them). It is a stand-in for a backend, and `TechnicianCard` is its only consumer.
 - Client components are small and mostly enhance server-rendered forms: `components/Autocomplete.tsx` is a styled suggestion input that is still a plain named `<input>`, and `components/AutoSubmit.tsx` re-submits the surrounding GET form as a `router.push` on every change. Keep forms working as plain GET forms when adding to them.
-- `/technicians` filters on the server from URL search params (`q`, `city`, repeated `category`, `rating`) using a plain GET `<form>`, so it works without client JS. Because `searchParams` is request-time data under `cacheComponents`, the listing is an async component wrapped in `<Suspense>` inside `app/technicians/page.tsx`.
+- `/technicians` filters on the server from URL search params (`q`, `city`, repeated `category`) using a plain GET `<form>`, so it works without client JS. Because `searchParams` is request-time data under `cacheComponents`, the listing is an async component wrapped in `<Suspense>` inside `app/technicians/page.tsx`.

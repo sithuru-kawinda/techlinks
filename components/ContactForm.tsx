@@ -65,6 +65,7 @@ export default function ContactForm() {
         <textarea id="message" name="message" rows={6} required defaultValue={v.message} placeholder={p("Tell us what you need...", "ඔබට අවශ්‍ය දේ අපට කියන්න...")} className={`${field} resize-y`} {...aria("message")} />
         {err("message")}
       </div>
+      {e.form && <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 sm:col-span-2">{p(e.form, errorSi[e.form])}</p>}
       <div className="flex flex-col items-start gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-slate-500">{p("We only use your details to reply to this enquiry.", "ඔබේ විස්තර භාවිතා කරන්නේ මෙම විමසුමට පිළිතුරු දීමට පමණි.")}</p>
         <button type="submit" disabled={pending} className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3.5 font-bold text-brand-dark shadow-lg shadow-gold/30 transition hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-70">

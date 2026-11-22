@@ -1,6 +1,7 @@
 import "server-only";
 import { createHash, createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 
 const COOKIE = "techlinks_admin";
 const MAX_AGE = 60 * 60 * 8; // 8 hours
@@ -42,6 +43,7 @@ export async function isAdmin() {
   const value = (await cookies()).get(COOKIE)?.value;
   if (!value) return false;
   const [exp, sig] = value.split(".");
+  await connection(); // Date.now() is request-time data under cacheComponents
   if (!exp || !sig || Number(exp) < Date.now()) return false;
   const a = Buffer.from(sig);
   const b = Buffer.from(sign(exp));

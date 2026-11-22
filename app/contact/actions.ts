@@ -1,8 +1,12 @@
 "use server";
 
+import nodemailer from "nodemailer";
+
+const sendFailed = "Sorry, we could not send your message. Please try again later.";
+
 export type ContactState = {
   status: "idle" | "error" | "success";
-  errors?: Partial<Record<"name" | "email" | "phone" | "topic" | "message", string>>;
+  errors?: Partial<Record<"name" | "email" | "phone" | "topic" | "message" | "form", string>>;
   values?: Record<string, string>;
 };
 
@@ -23,7 +27,25 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
 
   if (Object.keys(errors).length) return { status: "error", errors, values };
 
-  // TODO: no backend yet. Deliver the enquiry (email, database or CRM) here.
-  console.log("[contact] new enquiry", values);
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    console.error("[contact] GMAIL_USER / GMAIL_APP_PASSWORD are not set");
+    return { status: "error", errors: { form: sendFailed }, values };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({ service: "gmail", auth: { user, pass } });
+    await transporter.sendMail({
+      from: `"TechLinks Website" <${user}>`,
+      to: process.env.CONTACT_TO_EMAIL || user,
+      replyTo: `"${values.name.replace(/["\r\n]/g, "")}" <${values.email}>`,
+      subject: `[TechLinks] ${values.topic} - ${values.name}`.replace(/[\r\n]/g, " "),
+      text: `Name: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone || "-"}\nTopic: ${values.topic}\n\n${values.message}`,
+    });
+  } catch (err) {
+    console.error("[contact] failed to send email", err);
+    return { status: "error", errors: { form: sendFailed }, values };
+  }
   return { status: "success" };
 }

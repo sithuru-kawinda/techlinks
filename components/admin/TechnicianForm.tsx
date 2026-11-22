@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { saveTechnician, type SaveState } from "@/app/admin/actions";
 import { categories, type Technician } from "@/lib/data";
+import SmoothSelect from "./SmoothSelect";
 
 const initial: SaveState = {};
 
@@ -37,10 +38,15 @@ export default function TechnicianForm({ technician }: { technician?: Technician
       </div>
       <div>
         <label htmlFor="category" className={label}>Category</label>
-        <select id="category" name="category" defaultValue={v("category")} className={field} {...bad("category")}>
-          <option value="" disabled>Select a category</option>
-          {categories.map((c) => <option key={c.slug} value={c.slug}>{c.name}</option>)}
-        </select>
+        <SmoothSelect
+          id="category"
+          name="category"
+          defaultValue={v("category")}
+          placeholder="Select a category"
+          options={categories.map((c) => ({ value: c.slug, label: c.name }))}
+          invalid={Boolean(e.category)}
+          className={field}
+        />
         {err("category")}
       </div>
       <div>

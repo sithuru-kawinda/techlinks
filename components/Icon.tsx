@@ -1,6 +1,6 @@
 import type { IconName } from "@/lib/data";
 
-const paths: Record<IconName | "search" | "star" | "pin" | "check" | "user" | "phone", string> = {
+const paths: Record<IconName | "search" | "star" | "pin" | "check" | "user" | "phone" | "mail", string> = {
   bolt: "M13 2 4 14h7l-1 8 9-12h-7l1-8Z",
   drop: "M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z",
   snow: "M12 2v20M4.9 6l14.2 12M19.1 6 4.9 18M2 12h20",
@@ -12,6 +12,7 @@ const paths: Record<IconName | "search" | "star" | "pin" | "check" | "user" | "p
   pin: "M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
   check: "m5 12.5 4.5 4.5L19 7.5",
   phone: "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z",
+  mail: "M3 6h18v12H3zM3 7l9 6 9-6",
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-8 9a8 8 0 0 1 16 0",
 };
 

@@ -94,50 +94,82 @@ async function Admin({ searchParams }: { searchParams: SearchParams }) {
         </section>
 
         <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <h2 className="border-b border-slate-200 px-6 py-4 text-lg font-extrabold text-brand-dark">All technicians ({list.length})</h2>
+          <h2 className="border-b border-slate-200 px-4 py-4 sm:px-6 text-lg font-extrabold text-brand-dark">All technicians ({list.length})</h2>
           {list.length ? (
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[40rem] text-left text-sm">
-                <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                  <tr>
-                    <th className="px-6 py-3 font-bold">Technician</th>
-                    <th className="px-3 py-3 font-bold">Category</th>
-                    <th className="px-3 py-3 font-bold">City</th>
-                    <th className="px-3 py-3 font-bold">Status</th>
-                    <th className="px-6 py-3 text-right font-bold">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {list.map((t) => (
-                    <tr key={t.id} className={t.id === editId ? "bg-amber-50/60" : undefined}>
-                      <td className="px-6 py-3">
-                        <p className="font-bold text-brand-dark">{t.name}</p>
-                        <p className="text-xs text-slate-500">{t.trade}{t.phone ? ` · ${t.phone}` : ""}</p>
-                      </td>
-                      <td className="px-3 py-3 text-slate-600">{catName(t.category)}</td>
-                      <td className="px-3 py-3 text-slate-600">{t.city}</td>
-                      <td className="px-3 py-3">
+            <>
+              {/* phones: one card per technician */}
+              <ul className="max-h-[70vh] divide-y divide-slate-100 overflow-y-auto overscroll-contain md:hidden">
+                {list.map((t) => (
+                  <li key={t.id} className={`p-4 ${t.id === editId ? "bg-amber-50/60" : ""}`}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="truncate font-bold text-brand-dark">{t.name}</p>
+                        <p className="text-xs text-slate-500">{t.trade}</p>
+                        <p className="mt-1 text-xs text-slate-600">{catName(t.category)} · {t.city}</p>
+                        {t.phone && <a href={`tel:${t.phone}`} className="text-xs font-semibold text-brand">{t.phone}</a>}
+                      </div>
+                      <div className="flex shrink-0 flex-col items-end gap-1">
                         <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${t.active === false ? "bg-slate-100 text-slate-500" : "bg-emerald-50 text-emerald-700"}`}>
                           {t.active === false ? "Hidden" : "Visible"}
                         </span>
-                        {t.featured && <span className="ml-1.5 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-gold-dark">Featured</span>}
-                      </td>
-                      <td className="px-6 py-3">
-                        <div className="flex items-center justify-end gap-1">
-                          <Link href={`/admin?edit=${t.id}#form`} className="rounded-lg px-2.5 py-1.5 text-xs font-bold text-brand transition hover:bg-blue-50">Edit</Link>
-                          <form action={toggleActive.bind(null, t.id)}>
-                            <button type="submit" className="rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-600 transition hover:bg-slate-100">
-                              {t.active === false ? "Show" : "Hide"}
-                            </button>
-                          </form>
-                          <DeleteButton id={t.id} name={t.name} />
-                        </div>
-                      </td>
+                        {t.featured && <span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-gold-dark">Featured</span>}
+                      </div>
+                    </div>
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <Link href={`/admin?edit=${t.id}#form`} className="rounded-lg bg-blue-50 px-4 py-2 text-sm font-bold text-brand">Edit</Link>
+                      <form action={toggleActive.bind(null, t.id)}>
+                        <button type="submit" className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">{t.active === false ? "Show" : "Hide"}</button>
+                      </form>
+                      <DeleteButton id={t.id} name={t.name} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {/* tablets and desktops: table */}
+              <div className="hidden max-h-[60rem] overflow-auto overscroll-contain md:block">
+                <table className="w-full text-left text-sm">
+                  <thead className="sticky top-0 z-10 bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                    <tr>
+                      <th className="px-6 py-3 font-bold">Technician</th>
+                      <th className="px-3 py-3 font-bold">Category</th>
+                      <th className="px-3 py-3 font-bold">City</th>
+                      <th className="px-3 py-3 font-bold">Status</th>
+                      <th className="px-6 py-3 text-right font-bold">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {list.map((t) => (
+                      <tr key={t.id} className={t.id === editId ? "bg-amber-50/60" : undefined}>
+                        <td className="px-6 py-3">
+                          <p className="font-bold text-brand-dark">{t.name}</p>
+                          <p className="text-xs text-slate-500">{t.trade}{t.phone ? ` · ${t.phone}` : ""}</p>
+                        </td>
+                        <td className="px-3 py-3 text-slate-600">{catName(t.category)}</td>
+                        <td className="px-3 py-3 text-slate-600">{t.city}</td>
+                        <td className="px-3 py-3">
+                          <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${t.active === false ? "bg-slate-100 text-slate-500" : "bg-emerald-50 text-emerald-700"}`}>
+                            {t.active === false ? "Hidden" : "Visible"}
+                          </span>
+                          {t.featured && <span className="ml-1.5 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-gold-dark">Featured</span>}
+                        </td>
+                        <td className="px-6 py-3">
+                          <div className="flex items-center justify-end gap-1">
+                            <Link href={`/admin?edit=${t.id}#form`} className="rounded-lg px-2.5 py-1.5 text-xs font-bold text-brand transition hover:bg-blue-50">Edit</Link>
+                            <form action={toggleActive.bind(null, t.id)}>
+                              <button type="submit" className="rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-600 transition hover:bg-slate-100">
+                                {t.active === false ? "Show" : "Hide"}
+                              </button>
+                            </form>
+                            <DeleteButton id={t.id} name={t.name} />
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           ) : (
             <p className="p-10 text-center text-slate-600">No technicians yet. Add the first one using the form.</p>
           )}
