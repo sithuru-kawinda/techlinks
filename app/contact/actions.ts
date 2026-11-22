@@ -2,6 +2,7 @@
 
 import nodemailer from "nodemailer";
 
+const CONTACT_EMAIL = "techlinks.lk@gmail.com"; // every enquiry is delivered here
 const sendFailed = "Sorry, we could not send your message. Please try again later.";
 
 export type ContactState = {
@@ -38,7 +39,7 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
     const transporter = nodemailer.createTransport({ service: "gmail", auth: { user, pass } });
     await transporter.sendMail({
       from: `"TechLinks Website" <${user}>`,
-      to: process.env.CONTACT_TO_EMAIL || user,
+      to: CONTACT_EMAIL,
       replyTo: `"${values.name.replace(/["\r\n]/g, "")}" <${values.email}>`,
       subject: `[TechLinks] ${values.topic} - ${values.name}`.replace(/[\r\n]/g, " "),
       text: `Name: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone || "-"}\nTopic: ${values.topic}\n\n${values.message}`,
