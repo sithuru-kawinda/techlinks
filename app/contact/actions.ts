@@ -36,14 +36,16 @@ export async function sendEnquiry(_prev: ContactState, formData: FormData): Prom
   }
 
   try {
-    const transporter = nodemailer.createTransport({ service: "gmail", auth: { user, pass } });
-    await transporter.sendMail({
+    const transporter = nodemailer.createTransport({ service: "gmail", auth: { user, pass }, connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 20000 });
+    const info = await transporter.sendMail({
       from: `"TechLinks Website" <${user}>`,
       to: CONTACT_EMAIL,
       replyTo: `"${values.name.replace(/["\r\n]/g, "")}" <${values.email}>`,
       subject: `[TechLinks] ${values.topic} - ${values.name}`.replace(/[\r\n]/g, " "),
       text: `Name: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone || "-"}\nTopic: ${values.topic}\n\n${values.message}`,
     });
+    if (!info.accepted.includes(CONTACT_EMAIL)) throw new Error(`Recipient not accepted: ${info.response}`);
+    console.log("[contact] email accepted for", CONTACT_EMAIL, "-", info.response);
   } catch (err) {
     console.error("[contact] failed to send email", err);
     return { status: "error", errors: { form: sendFailed }, values };
