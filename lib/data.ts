@@ -41,10 +41,10 @@ export const hues = [
 export const seedTechnicians: Technician[] = [];
 
 export const steps = [
-  { title: "Search", body: "Tell us the job and your area. Filter by trade, rating and price.", titleSi: "සොයන්න", bodySi: "කාර්යය සහ ඔබේ ප්‍රදේශය අපට කියන්න. වෘත්තිය, ශ්‍රේණිගත කිරීම සහ මිල අනුව පෙරන්න." },
-  { title: "Compare", body: "Read verified reviews and check each technician's profile and past work.", titleSi: "සසඳන්න", bodySi: "සත්‍යාපිත සමාලෝචන කියවා, එක් එක් ශිල්පියාගේ පැතිකඩ සහ කළ වැඩ පරීක්ෂා කරන්න." },
-  { title: "Book", body: "Contact your pick by call or WhatsApp and agree on a time that suits you.", titleSi: "වෙන්කරන්න", bodySi: "ඔබ තෝරාගත් අයට ඇමතුමකින් හෝ WhatsApp මඟින් සම්බන්ධ වී ඔබට ගැලපෙන වේලාවක් එකඟ වන්න." },
-  { title: "Relax", body: "A vetted professional arrives, fixes it, and you rate the job.", titleSi: "නිදහසේ සිටින්න", bodySi: "පරීක්ෂාගත වෘත්තිකයෙක් පැමිණ එය නිවැරදි කරයි, ඔබ වැඩය ශ්‍රේණිගත කරන්න." },
+  { title: "Find Your Technician", body: "Tell us what needs fixing and where you are. Filter by trade and city to see technicians near you.", titleSi: "ඔබේ ශිල්පියා සොයාගන්න", bodySi: "කුමක් අලුත්වැඩියා කළ යුතුද සහ ඔබ සිටින තැන අපට කියන්න. වෘත්තිය සහ නගරය අනුව පෙරා ඔබ අවට ශිල්පීන් බලන්න." },
+  { title: "Compare Your Options", body: "Check each technician's profile, trade, experience and ratings, then shortlist the ones that fit your job.", titleSi: "ඔබේ විකල්ප සසඳන්න", bodySi: "එක් එක් ශිල්පියාගේ පැතිකඩ, වෘත්තිය, පළපුරුද්ද සහ ශ්‍රේණිගත කිරීම් පරීක්ෂා කර, ඔබේ කාර්යයට ගැලපෙන අයව තෝරාගන්න." },
+  { title: "Connect Directly", body: "Call or message on WhatsApp, describe the job and agree on the time and price together. No middleman, no booking fees.", titleSi: "කෙළින්ම සම්බන්ධ වන්න", bodySi: "ඇමතුමකින් හෝ WhatsApp පණිවිඩයකින් කාර්යය විස්තර කර, වේලාව සහ මිල එකට එකඟ වන්න. අතරමැදියන් නැත, වෙන්කිරීමේ ගාස්තු නැත." },
+  { title: "Get It Fixed", body: "The technician arrives, completes the job, and you rate the service so others can choose with confidence.", titleSi: "වැඩය අවසන් කරගන්න", bodySi: "ශිල්පියා පැමිණ වැඩය නිම කරයි, අන් අයට විශ්වාසයෙන් තෝරාගත හැකි වන පරිදි ඔබ සේවාව ශ්‍රේණිගත කරන්න." },
 ];
 
 export const stats = [

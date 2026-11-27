@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "TechLinks connects homes and businesses with verified electricians, plumbers, AC and solar specialists. Learn who we are and how we work.",
 };
 
+const stepIcons = ["search", "star", "phone", "check"] as const;
+
 const values = [
   { icon: "check", title: "Verified Professionals", body: "We focus on skilled, vetted technicians so you can hire with confidence.", titleSi: "සත්‍යාපිත වෘත්තිකයන්", bodySi: "ඔබට විශ්වාසයෙන් කුලියට ගත හැකි වන පරිදි අපි දක්ෂ, පරීක්ෂාගත ශිල්පීන් කෙරෙහි අවධානය යොමු කරමු." },
   { icon: "star", title: "Honest Reviews", body: "Ratings and feedback from real customers help you choose the right person.", titleSi: "අවංක සමාලෝචන", bodySi: "සැබෑ පාරිභෝගිකයන්ගේ ශ්‍රේණිගත කිරීම් සහ ප්‍රතිපෝෂණ නිවැරදි පුද්ගලයා තෝරාගැනීමට ඔබට උපකාරී වේ." },
@@ -144,11 +146,15 @@ export default function AboutPage() {
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-gold-dark"><Tr en="How it works" si="ක්‍රියා කරන ආකාරය" /></p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-brand-dark sm:text-5xl"><Tr en="From Search To Solved In Four Steps" si="සෙවීමේ සිට විසඳුම දක්වා පියවර හතරකින්" /></h2>
         </div>
-        <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="relative mt-16 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div aria-hidden className="absolute left-[12.5%] right-[12.5%] top-0 hidden h-px border-t-2 border-dashed border-gold/50 lg:block" />
           {steps.map((s, i) => (
-            <li key={s.title} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-gold text-lg font-extrabold text-brand-dark">{i + 1}</span>
-              <h3 className="mt-4 text-lg font-extrabold text-brand-dark"><Tr en={s.title} si={s.titleSi} /></h3>
+            <li key={s.title} className="group relative rounded-2xl border border-slate-200 bg-white px-6 pb-8 pt-10 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg">
+              <span className="absolute left-1/2 top-0 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-br from-gold-light to-gold text-lg font-extrabold text-brand-dark shadow-md shadow-gold/30 ring-4 ring-white">{i + 1}</span>
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-brand/5 text-brand transition group-hover:bg-brand group-hover:text-gold-light">
+                <Icon name={stepIcons[i]} className="h-7 w-7" />
+              </span>
+              <h3 className="mt-5 text-lg font-extrabold text-brand-dark"><Tr en={s.title} si={s.titleSi} /></h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600"><Tr en={s.body} si={s.bodySi} /></p>
             </li>
           ))}
