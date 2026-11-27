@@ -2,7 +2,7 @@
 
 import nodemailer from "nodemailer";
 
-const CONTACT_EMAIL = "techlinks.lk@gmail.com"; // every enquiry is delivered here
+const CONTACT_EMAIL = "contact@techlinks.lk"; // every enquiry is delivered here
 const sendFailed = "Sorry, we could not send your message. Please try again later.";
 
 export type ContactState = {

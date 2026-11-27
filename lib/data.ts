@@ -1,5 +1,5 @@
 export const contactPhone = { display: "+94 77 775 1783", href: "tel:+94777751783" };
-export const contactEmail = { display: "techlinks.lk@gmail.com", href: "mailto:techlinks.lk@gmail.com" };
+export const contactEmail = { display: "contact@techlinks.lk", href: "mailto:contact@techlinks.lk" };
 
 export const categories = [
   { slug: "electrician", blurb: "Wiring, repairs, lighting and safety checks", name: "Electricians", nameSi: "විදුලි කාර්මිකයන්", blurbSi: "රැහැන් ඇදීම, අලුත්වැඩියා, ආලෝකකරණය සහ ආරක්ෂණ පරීක්ෂාවන්", count: 100, icon: "bolt" },
