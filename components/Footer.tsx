@@ -78,7 +78,6 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-sm text-blue-100/70 sm:flex-row sm:px-8">
           <p><T k="footer.rights" /></p>
-          <Link href="/admin" className="transition hover:text-white"><T k="nav.admin" /></Link>
         </div>
       </div>
     </footer>

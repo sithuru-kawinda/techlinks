@@ -41,9 +41,6 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link href="/admin" className="text-sm font-medium text-slate-500 transition hover:text-brand">
-            {t("nav.admin")}
-          </Link>
           <Link href="/technicians" className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-brand-dark shadow-sm transition hover:bg-gold-light">
             {t("nav.find")}
           </Link>
@@ -68,7 +65,7 @@ export default function Navbar() {
 
       {open && (
         <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-slate-200 bg-white px-4 pb-5 pt-2 sm:px-8 lg:hidden">
-          {[...links, { href: "/admin", label: "nav.admin" as Key }].map((l) => (
+          {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
